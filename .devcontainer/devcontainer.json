@@ -1,0 +1,47 @@
+// Development container for the Caldova modernization lab.
+// It plays the APP01 role and runs SQL01 (SQL Server 2022) as a nested container
+// defined in ../docker-compose.yml.
+{
+  "name": "Caldova modernization lab (APP01)",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:1-8.0-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/azure-cli:1": {},
+    "ghcr.io/devcontainers/features/powershell:1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    }
+  },
+  // SQL Server needs at least 2 GB of memory; 4 cores and 16 GB keep the lab responsive.
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "16gb"
+  },
+  "remoteUser": "vscode",
+  "remoteEnv": {
+    "LAB_REPO_ROOT": "${containerWorkspaceFolder}",
+    "PATH": "${containerEnv:PATH}:/opt/mssql-tools18/bin"
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "postStartCommand": "bash .devcontainer/post-start.sh",
+  "portsAttributes": {
+    "1433": {
+      "label": "SQL01 (SQL Server)",
+      "onAutoForward": "ignore"
+    },
+    "8080": {
+      "label": "Caldova Inventory API",
+      "onAutoForward": "silent"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot-chat"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "pwsh"
+      }
+    }
+  }
+}

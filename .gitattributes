@@ -1,2 +1,5 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Keep the starter workspace byte-identical to the original lab files (Windows line endings).
+labfiles/CaldovaInventory/** -text
+
+# Shell scripts run in the Linux development container and must use LF line endings.
+*.sh text eol=lf

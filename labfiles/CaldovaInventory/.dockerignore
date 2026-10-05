@@ -1,0 +1,10 @@
+**/bin/
+**/obj/
+.git/
+.gitignore
+.vs/
+.vscode/
+compose.yaml
+evidence/
+scripts/
+solution/

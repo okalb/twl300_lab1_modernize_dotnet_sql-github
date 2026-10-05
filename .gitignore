@@ -1,0 +1,21 @@
+# Build output
+bin/
+obj/
+
+# Local IDE settings
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Deployment parameter files that might contain secrets
+*.parameters.local.json
+infra/parameters/*.local.json
+
+# Data exported during the lab
+*.bcp
+
+# Logs and OS files
+*.log
+.DS_Store
+Thumbs.db
